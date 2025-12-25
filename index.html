@@ -1,13 +1,135 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Landslide Warning System</title>
-</head>
-<body style="text-align:center; font-family:Arial;">
-  <h1>🌍 Landslide Early Warning System</h1>
-  <p>This website shows real-time sensor data</p>
+  <title>Landslide Early Warning System</title>
 
-  <p>Soil Moisture: <span id="soil">--</span>%</p>
-  <p>Status: <b id="status">SAFE</b></p>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: #0b132b;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #00eaff;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #1c2541;
+      width: 220px;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #5bc0be;
+    }
+
+    .value {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .status-safe {
+      color: #00ff88;
+    }
+
+    .status-warning {
+      color: #ffcc00;
+    }
+
+    .status-danger {
+      color: #ff4c4c;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 10px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🌍 Landslide Early Warning System</h1>
+    <p>Real-Time Monitoring & Prediction Dashboard</p>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Soil Moisture</h2>
+      <div class="value" id="soil">--%</div>
+    </div>
+
+    <div class="card">
+      <h2>Rainfall</h2>
+      <div class="value" id="rain">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Tilt Value</h2>
+      <div class="value" id="tilt">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Status</h2>
+      <div class="value status-safe" id="status">SAFE</div>
+    </div>
+
+  </div>
+
+  <footer>
+    INSPIRE–MANAK Project | Developed by Sathvik
+  </footer>
+
+  <script>
+    // Temporary demo values
+    let soil = 72;
+    let rain = 60;
+    let tilt = 7;
+
+    document.getElementById("soil").innerHTML = soil + "%";
+    document.getElementById("rain").innerHTML = rain;
+    document.getElementById("tilt").innerHTML = tilt;
+
+    let status = document.getElementById("status");
+
+    if (soil > 65 && rain > 50 && tilt > 5) {
+      status.innerHTML = "DANGER";
+      status.className = "value status-danger";
+    } else if (soil > 55) {
+      status.innerHTML = "WARNING";
+      status.className = "value status-warning";
+    } else {
+      status.innerHTML = "SAFE";
+      status.className = "value status-safe";
+    }
+  </script>
+
 </body>
 </html>
